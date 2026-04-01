@@ -7,6 +7,7 @@
     <title>WHYYY</title>
 </head>
 <body>
+    <x-navigation></x-navigation>
     <h1>Why, Laravel...</h1>
 </body>
 </html>

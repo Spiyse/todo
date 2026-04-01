@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Diary;
 use Illuminate\Http\Request;
+use App\Models\Diary;
+
 
 class DiaryController extends Controller
 {
@@ -11,6 +11,11 @@ class DiaryController extends Controller
     {
         $diaries = Diary::all();
 
-        return view('diary.index', compact('diaries'));
+        return view('diaries.index', compact('diaries'));
+    }
+
+    public function show(Diary $diary)
+    {
+        return view('diaries.show', compact('diary'));
     }
 }
