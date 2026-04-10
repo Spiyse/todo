@@ -6,5 +6,8 @@
     <h1>{{ $diary->title }}</h1>
     <p>{{ $diary->body }}</p>
     <p>{{ $diary->date }}</p>
-    <p><a href="/diaries">Atpakal uz sarakstu</a></p>
+        <p>
+            <a href="/diaries/{{ $diary->id }}/edit">Rediģēt</a> |
+            <a href="/diaries">Atpakal uz sarakstu</a>
+        </p>
 </x-layout>

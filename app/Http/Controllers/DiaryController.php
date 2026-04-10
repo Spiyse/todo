@@ -14,8 +14,53 @@ class DiaryController extends Controller
         return view('diaries.index', compact('diaries'));
     }
 
-    public function show(Diary $diary)
+    public function create()
     {
-        return view('diaries.show', compact('diary'));
+        return view('diaries.create');
     }
-}
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            "title" => ["required", "max:100"],
+            "body" => ["required"],
+            "date" => ["required", "date"],
+        ]);
+
+        Diary::create([
+            'title' => $validated["title"],
+            'body' => $validated["body"],
+            'date' => $validated["date"],
+        ]);
+
+        return redirect('/diaries');
+    }
+
+
+    public function edit(Diary $diary)
+        {
+            return view('diaries.edit', compact('diary'));
+        }
+
+        public function show(Diary $diary)
+        {
+            return view('diaries.show', compact('diary'));
+        }
+
+        public function update(Request $request, Diary $diary)
+        {
+            $validated = $request->validate([
+                "title" => ["required", "max:100"],
+                "body" => ["required"],
+                "date" => ["required", "date"],
+            ]);
+
+            $diary->title = $validated["title"];
+            $diary->body = $validated["body"];
+            $diary->date = $validated["date"];
+
+            $diary->save();
+
+            return redirect('/diaries/' . $diary->id);
+        }
+    } 
