@@ -7,5 +7,10 @@
     <p>Izpildits: {{ $todo->completed ? "Ja" : "Ne" }}</p>
     <p>{{ $todo->date }}</p>
     <p><a href="/todos/{{ $todo->id }}/edit">Rediget ierakstu</a></p>
+    <form action="/todos/{{ $todo->id }}" method="POST">
+        @csrf
+        @method("delete")
+        <button type="submit">Dzest ierakstu</button>
+    </form>
     <p><a href="/todos">Atpakal uz sarakstu</a></p>
 </x-layout>
